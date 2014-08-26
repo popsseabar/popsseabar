@@ -1,0 +1,55 @@
+---
+---
+
+@import "base";
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-center {
+    min-height: 100%;
+    margin: 0;
+    padding: 5%;
+
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    display: -moz-box;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+
+    display: box;
+    box-align: center;
+    box-pack: center;
+}
+
+@media screen and (min-width: 30px) {
+    .flex-center {
+        padding: 1.5em;
+    }
+}
+
+.flex-center--this {
+
+}
+
+.flex-center--this__img {
+    width: 800px;
+    max-width: 100%;
+    height: auto;
+}
+
+@import "helpers";
+@import "print";
