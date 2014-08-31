@@ -107,7 +107,7 @@ body {
     margin-right: auto;
     background-image: url(/images/menu.jpg);
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: $menu-aspect-ratio * 100%;
 }
