@@ -1,74 +1,83 @@
 ---
 ---
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pop's SeaBar</title>
-{% if site.github %}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
-{% else %}
-<link rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css">
-{% endif %}
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet"  href="http://fonts.googleapis.com/css?family=Boogaloo">
-<script type="text/javascript" src="//use.typekit.net/ova5swz.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pop's SeaBar</title>
+        {% if site.github %}
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+        {% else %}
+        <link rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css">
+        {% endif %}
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet"  href="http://fonts.googleapis.com/css?family=Boogaloo">
+        <script type="text/javascript" src="//use.typekit.net/ova5swz.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    </head>
 
-<h1 class="visuallyhidden">Pop's SeaBar</h1>
+    <body>
+        <h1 class="visuallyhidden">Pop's SeaBar</h1>
 
-<div class="flex-center">
-    <div class="container">
-        <div class="menu shadow-box half-step"></div>
+        <div class="flex-center">
+            <div class="container">
+                <div class="menu shadow-box half-step"></div>
 
-        <nav class="navbar">
-            <ul class="navbar__list list--no-bullets">
-                <!-- <li class="navbar__list__item"><a href="downloads/pops-menu.pdf" target="_blank">Menu</a></li> -->
-                <li class="navbar__list__item"><a class="fancybox" href="#our-story">Our Story</a></li>
-                <li class="navbar__list__item"><a class="fancybox" href="#find-us">Find Us</a></li>
-                <li class="navbar__list__item navbar__list__item--twitter"><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
-                <li class="navbar__list__item navbar__list__item--facebook"><a class="icon icon--facebook" href="https://www.facebook.com/popsseabar"><span class="visuallyhidden">Facebook</span></a></li>
+                <nav class="navbar">
+                    <ul class="navbar__nav list--inline-block list--no-bullets">
+                        <!-- <li><a href="downloads/pops-menu.pdf" target="_blank">Menu</a></li> -->
+                        <li><a class="js-modal" href="#our-story">Our Story</a></li>
+                        <li><a class="js-modal" href="#find-us">Find Us</a></li>
+                    </ul>
+                    <ul class="navbar__social-nav list--inline-block list--no-bullets">
+                        <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
+                        <li><a class="icon icon--facebook" href="https://www.facebook.com/popsseabar"><span class="visuallyhidden">Facebook</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div id="our-story" class="fancybox-content fancybox-content--left-align">
+            <h2 class="fancybox-content__heading fancybox-content__heading--our-story rhythm">
+                <span class="visuallyhidden">About Pop's</span>
+            </h2>
+            <p class="half-step">Pop's SeaBar is brought to you by business partners Chef John Manolatos and Justin Abad of Cashion's Eat Place.</p>
+            <p class="half-step">The project is a Mom &amp; Pop's, boardwalk-inspired, seafood bar and restaurant. The concept was inspired by the time that each of them spent on the Jersey Boardwalk (John) and Gulf Beaches of St. Petersburg, Florida (Justin) as children with their families.</p>
+            <p class="half-step">It's a playful and referential look back at the care-free establishments that made "Going to the Beach" such an exciting thing to hear while growing up!</p>
+            <p class="half-step">The mantra at Pop's: Everyone relax. It's a place where you can drink a cold, canned beer, sip on traditional boardwalk cocktails like an orange crush or Lime Rickey (with our twist, of course), and slurp down some oysters from our raw bar or snack on our "Famous Boardwalk Chicken" with friends and family.</p>
+            <p class="half-step">While casual and friendly, the staff is comprised of true bar and culinary pros that take hospitality very seriously. And that's about the only thing we plan on taking seriously!</p>
+            <p class="half-step">Join us for lunch or dinner 7 days a week and don't forget to stop by our sister restaurant, Cashion's Eat Place, right next door!</p>
+        </div>
+
+        <div id="find-us" class="fancybox-content">
+            <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
+                <span class="visuallyhidden">Find Us</span>
+            </h2>
+            <ul class="list--no-bullets rhythm">
+                <li><a href="https://goo.gl/maps/gsT2r" target="_blank">1817 Columbia Road NW<br>Washington, DC 20009</a></li>
+                <li>(202) 534-3933</li>
+                <li><a href="mailto:info@popsseabar.com">info@popsseabar.com</a></li>
             </ul>
-        </nav>
-    </div>
-</div>
+            <h3>Hours</h3>
+            <ul class="list--no-bullets half-step">
+                <li>Sun-Thurs: noon-midnight</li>
+                <li>Fri-Sat: noon-2:00am</li>
+            </ul>
+        </div>
 
-<div id="our-story" class="fancybox-content fancybox-content--left-align">
-    <h2 class="fancybox-content__heading fancybox-content__heading--our-story rhythm">
-        <span class="visuallyhidden">About Pop's</span>
-    </h2>
-    <p class="half-step">Pop's SeaBar is brought to you by business partners Chef John Manolatos and Justin Abad of Cashion's Eat Place.</p>
-    <p class="half-step">The project is a Mom &amp; Pop's, boardwalk-inspired, seafood bar and restaurant. The concept was inspired by the time that each of them spent on the Jersey Boardwalk (John) and Gulf Beaches of St. Petersburg, Florida (Justin) as children with their families.</p>
-    <p class="half-step">It's a playful and referential look back at the care-free establishments that made "Going to the Beach" such an exciting thing to hear while growing up!</p>
-    <p class="half-step">The mantra at Pop's: Everyone relax. It's a place where you can drink a cold, canned beer, sip on traditional boardwalk cocktails like an orange crush or Lime Rickey (with our twist, of course), and slurp down some oysters from our raw bar or snack on our "Famous Boardwalk Chicken" with friends and family.</p>
-    <p class="half-step">While casual and friendly, the staff is comprised of true bar and culinary pros that take hospitality very seriously. And that's about the only thing we plan on taking seriously!</p>
-    <p class="half-step">Join us for lunch or dinner 7 days a week and don't forget to stop by our sister restaurant, Cashion's Eat Place, right next door!</p>
-</div>
+        {% if site.github %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        {% else %}
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
+        {% endif %}
+        <script>
+            $(document).ready(function() {
+                $('.js-modal').fancybox();
+            });
+        </script>
+    </body>
 
-<div id="find-us" class="fancybox-content">
-    <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
-        <span class="visuallyhidden">Find Us</span>
-    </h2>
-    <ul class="list--no-bullets rhythm">
-        <li><a href="https://goo.gl/maps/gsT2r" target="_blank">1817 Columbia Road NW<br>Washington, DC 20009</a></li>
-        <li>(202) 534-3933</li>
-        <li><a href="mailto:info@popsseabar.com">info@popsseabar.com</a></li>
-    </ul>
-    <h3>Hours</h3>
-    <ul class="list--no-bullets half-step">
-        <li>Sun-Thurs: noon-midnight</li>
-        <li>Fri-Sat: noon-2:00am</li>
-    </ul>
-</div>
-
-{% if site.github %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-{% else %}
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
-{% endif %}
-<script>
-    $(document).ready(function() {
-        $('.fancybox').fancybox();
-    });
-</script>
+</html>
