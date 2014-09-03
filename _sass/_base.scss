@@ -6,7 +6,12 @@
     box-sizing: border-box;
 }
 
-:selection, :-moz-selection {
+::selection {
+    color: $bgcolor;
+    background: $alt-color;
+}
+
+::-moz-selection {
     color: $bgcolor;
     background: $alt-color;
 }
