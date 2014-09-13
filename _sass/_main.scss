@@ -83,10 +83,18 @@
     }
 }
 
-@media only screen and (min-width: 90rem) {
+@media only screen and (min-width: 90.1rem) {
     .menu {
         width: 80rem;
         height: 80rem * $menu-aspect-ratio;
+        padding-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 100.1rem) {
+    .menu {
+        width: 90rem;
+        height: 90rem * $menu-aspect-ratio;
         padding-bottom: 0;
     }
 }
