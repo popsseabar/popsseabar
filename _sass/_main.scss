@@ -106,16 +106,20 @@
     letter-spacing: 0.15em;
 }
 
-.navbar__nav li {
-    &:before {
-        content: "• ";
-    }
-    &:first-child:before {
-        content: none;
+.navbar__nav {
+    margin-bottom: 0;
+    li {
+        &:before {
+            content: "• ";
+        }
+        &:first-child:before {
+            content: none;
+        }
     }
 }
 
 .navbar__social-nav {
+    margin-bottom: 0;
     margin-left: 0.333em;
 }
 
