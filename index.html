@@ -56,13 +56,13 @@
             <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
                 <span class="visuallyhidden">Find Us</span>
             </h2>
-            <ul class="list--no-bullets rhythm">
+            <ul class="list--no-bullets step">
                 <li><a href="https://goo.gl/maps/gsT2r" target="_blank">1817 Columbia Road NW<br>Washington, DC 20009</a></li>
                 <li>(202) 534-3933</li>
                 <li><a href="mailto:info@popsseabar.com">info@popsseabar.com</a></li>
             </ul>
-            <h3>Hours</h3>
-            <ul class="list--no-bullets half-step">
+            <h3 class="baby-step">Hours</h3>
+            <ul class="list--no-bullets baby-step">
                 <li>Sun-Thurs: noon-midnight</li>
                 <li>Fri-Sat: noon-2:00am</li>
             </ul>
@@ -77,9 +77,10 @@
         {% endif %}
         <script>
             $(document).ready(function() {
-                $('.js-modal').fancybox();
+                $('.js-modal').fancybox({
+                    padding: 32
+                });
             });
         </script>
     </body>
-
 </html>

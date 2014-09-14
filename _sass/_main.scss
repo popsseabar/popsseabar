@@ -33,25 +33,18 @@
     }
 }
 
-.rhythm {
-    margin-bottom: 5% !important;
-}
-
-@media only screen and (min-width: 30rem) {
     .rhythm {
         margin-bottom: 1.5rem !important;
     }
-}
-
-.half-step {
-    margin-bottom: 2.5%;
-}
-
-@media only screen and (min-width: 30rem) {
+    .step {
+        margin-bottom: 1rem;
+    }
     .half-step {
         margin-bottom: 0.75rem;
     }
-}
+    .baby-step {
+        margin-bottom: 0.25rem;
+    }
 
 .shadow-box {
     background-color: #fff;
@@ -138,7 +131,6 @@
 .fancybox-skin {
     @extend .rhythm;
     background-color: $menu-bgcolor;
-    padding: 5% !important;
     border-radius: 0;
     border: 6px $menu-color solid;
     position: relative;
@@ -155,14 +147,12 @@
     }
 }
 
-@media only screen and (min-width: 30rem) {
-    .fancybox-skin {
-        padding: 1.5em;
-    }
-}
-
 .fancybox-overlay {
     background: rgba(180,180,180,0.6);
+}
+
+.fancybox-wrap {
+    max-width: 40rem;
 }
 
 .fancybox-inner {
@@ -174,13 +164,13 @@
 .fancybox-content {
     font-family: $fancy-fonts;
     display: none;
-    max-width: 40rem;
+    // max-width: 40rem;
     color: $menu-color;
     color: rgba($menu-color,0.9);
     font-size: 1.2em;
     line-height: 1.5;
     p:last-child {
-        margin-bottom: 0.5em;
+        margin-bottom: 0;
     }
 }
 
@@ -204,8 +194,8 @@
 
 @media only screen and (min-width: 30rem) {
     .fancybox-content__heading {
-        height: 113px;
-        width: 390px;
+        height: 93px;
+        width: 321px;
         padding: 0;
     }
 }
