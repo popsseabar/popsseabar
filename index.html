@@ -31,6 +31,7 @@
                         <li><a class="js-modal" href="#our-story">Our Story</a></li>
                         <li><a class="js-modal" href="#find-us">Find Us</a></li>
                         <li><a href="https://www.giftrocker.com/secure/order/?hash=41da2364">Gift Certificates</a></li>
+                        <li><a class="js-mailchimp-popup" href="http://eepurl.com/5heW5">Email Signup</a></li>
                     </ul>
                     <ul class="navbar__social-nav list--inline-block list--no-bullets">
                         <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
@@ -76,11 +77,18 @@
         <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
         {% endif %}
         <script>
-            $(document).ready(function() {
-                $('.js-modal').fancybox({
-                    padding: 32
+            (function($, window, document, undefined) {
+                $(document).ready(function() {
+                    $('.js-mailchimp-popup').click(function(e) {
+                        e.preventDefault();
+                        var href = $(this).attr('href');
+                        window.open(href, "Email Signup", "height=850,width=700,resizable=1");
+                    });
+                    $('.js-modal').fancybox({
+                        padding: 32
+                    });
                 });
-            });
+            })(jQuery, window, document);
         </script>
     </body>
 </html>
