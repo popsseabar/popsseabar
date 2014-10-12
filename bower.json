@@ -1,7 +1,8 @@
 {
-  "name": "popsseabar.github.io",
+  "name": "popsseabar.com",
   "private": true,
   "devDependencies": {
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "fancybox": "~2.1.5"
   }
 }

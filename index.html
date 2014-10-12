@@ -12,7 +12,7 @@
         {% if site.github %}
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
         {% else %}
-        <link rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css">
+        <link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css">
         {% endif %}
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet"  href="http://fonts.googleapis.com/css?family=Boogaloo">
@@ -73,8 +73,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
         {% else %}
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-        <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/fancybox/source/jquery.fancybox.js"></script>
         {% endif %}
         <script>
             (function($, window, document, undefined) {
@@ -82,7 +82,7 @@
                     $('.js-mailchimp-popup').click(function(e) {
                         e.preventDefault();
                         var href = $(this).attr('href');
-                        window.open(href, "Email Signup", "height=850,width=700,resizable=1");
+                        window.open(href, "Email Signup", "height=770,width=700,resizable=1");
                     });
                     $('.js-modal').fancybox({
                         padding: 32
