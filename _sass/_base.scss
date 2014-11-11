@@ -38,6 +38,13 @@ body {
     background-repeat: repeat;
     background-position: 50% 0;
     text-align: center;
+    background-size: 33px 5px;
+}
+
+@media only screen and (min-width: 48rem) {
+    body {
+        background-size: 65px 10px;
+    }
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -46,7 +53,6 @@ body {
        only screen and (min-device-pixel-ratio: 2) {
     body {
         background-image: url(/images/bg@2x.png);
-        background-size: 65px 10px;
     }
 }
 

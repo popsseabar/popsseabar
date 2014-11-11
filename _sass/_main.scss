@@ -2,6 +2,18 @@
    Main styles
    ========================================================================== */
 
+@media only screen and (min-width: 640px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .not-mobile {
+        display: none !important;
+    }
+}
+
 .flex-center {
     min-height: 100%;
 
@@ -53,6 +65,17 @@
     -webkit-box-shadow: 0 0 10px 5px #d5d1c2;
 }
 
+.logo {
+    max-width: 20em;
+    height: auto;
+}
+
+@media only screen and (min-width: 40rem) {
+    .logo {
+
+    }
+}
+
 .menu {
     margin-left: auto;
     margin-right: auto;
@@ -99,14 +122,28 @@
     letter-spacing: 0.12em;
 }
 
-.navbar__nav {
-    margin-bottom: 0;
-    li {
-        &:before {
-            content: "• ";
+@media only screen and (min-width: 40rem) {
+    .navbar__nav {
+        margin-bottom: 0;
+        li {
+            &:before {
+                content: "• ";
+            }
+            &:nth-child(2):before {
+                content: none;
+            }
         }
-        &:first-child:before {
-            content: none;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .navbar__nav {
+        margin-bottom: 0;
+        li {
+            &:before {
+                content: "";
+            }
         }
     }
 }
@@ -116,10 +153,96 @@
     margin-left: 0.333em;
 }
 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .navbar__social-nav { display: none !important; }
+}
+
 .list--inline-block {
-    display: inline-block;
+    display: block;
     li {
+        display: block;
+    }
+    a {
+        // @extend .shadow-box;
+        display: block;
+        padding: 0.75em;
+        margin-bottom: 0.5em;
+        background: $menu-color;
+        color: #fff;
+        transition: background 200ms;
+        &:hover, &:active, &:focus {
+            text-decoration: none;
+            background: rgba($menu-color,0.85);
+            outline: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 40rem) {
+    .list--inline-block {
         display: inline-block;
+        li {
+            display: inline-block;
+        }
+        a {
+            box-shadow: none;
+            display: inline;
+            padding: 0;
+            margin-bottom: 0;
+            background: none;
+            color: $menu-color;
+            &:hover, &:active, &:focus {
+                text-decoration: underline;
+                background: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .list--inline-block {
+        display: block;
+        li {
+            display: block;
+        }
+        a {
+            // @extend .shadow-box;
+            display: block;
+            padding: 0.75em;
+            margin-bottom: 0.5em;
+            background: $menu-color;
+            color: #fff;
+            transition: background 200ms;
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+                background: rgba($menu-color,0.85);
+                outline: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: landscape) {
+    .list--inline-block {
+        display: inline-block;
+        li {
+            display: inline-block;
+        }
+        a {
+            box-shadow: none;
+            display: inline;
+            padding: 0;
+            margin-bottom: 0;
+            background: none;
+            color: $menu-color;
+            &:hover, &:active, &:focus {
+                text-decoration: underline;
+                background: none;
+            }
+        }
     }
 }
 
