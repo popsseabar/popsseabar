@@ -164,9 +164,8 @@
         display: block;
     }
     a {
-        // @extend .shadow-box;
         display: block;
-        padding: 0.75em;
+        padding: 1em;
         margin-bottom: 0.5em;
         background: $menu-color;
         color: #fff;
@@ -208,9 +207,8 @@
             display: block;
         }
         a {
-            // @extend .shadow-box;
             display: block;
-            padding: 0.75em;
+            padding: 1em;
             margin-bottom: 0.5em;
             background: $menu-color;
             color: #fff;
