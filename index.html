@@ -21,6 +21,13 @@
     <body>
         <h1 class="visuallyhidden">Pop's SeaBar</h1>
 
+        <div class="notification-box shadow-box">
+            <div class="notification-box__message">
+                Want free beer for life? Check out <a href="http://us2.campaign-archive2.com/?u=264c9016e3bef6126fb2710db&id=186cc0ee77&e=51319ec09b">#DCKoozieChronicles</a>!
+            </div>
+            <a title="Close" class="js-notification-box-close fancybox-close" href="javascript:void(0);"></a>
+        </div>
+
         <div class="flex-center">
             <div class="container">
                 <img class="logo half-step mobile-only" src="/images/logo-white.svg" alt="Pop's Logo">
@@ -89,6 +96,9 @@
                     });
                     $('.js-modal').fancybox({
                         padding: 32
+                    });
+                    $('.js-notification-box-close').click(function() {
+                        $('.notification-box').slideUp();
                     });
                 });
             })(jQuery, window, document);

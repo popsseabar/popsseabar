@@ -9,12 +9,10 @@
 }
 
 ::selection {
-    color: $bgcolor;
-    background: $alt-color;
+    background: $bgcolor;
 }
 
 ::-moz-selection {
-    color: $bgcolor;
     background: $alt-color;
 }
 
