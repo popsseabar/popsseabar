@@ -7,14 +7,14 @@
         <meta name="description" content="Casual, boardwalk-inspired seafood bar and restaurant. Located in Adams Morgan, Washington, D.C. By the folks who brought you Cashion's Eat Place.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pop's SeaBar</title>
-        <link rel="shortcut icon" href="/images/favicon.png">
-        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+        <link rel="shortcut icon" href="{{ site.github.url }}/images/favicon.png">
+        <link rel="apple-touch-icon" href="{{ site.github.url }}/images/apple-touch-icon.png">
         {% if site.github %}
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
         {% else %}
-        <link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css">
+        <link rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css">
         {% endif %}
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="{{ site.github.url }}/css/styles.css">
         <link rel="stylesheet"  href="http://fonts.googleapis.com/css?family=Boogaloo">
     </head>
 
@@ -31,13 +31,13 @@
 
         <div class="flex-center">
             <div class="container">
-                <img class="logo half-step mobile-only" src="/images/logo-white.svg" alt="Pop's Logo">
+                <img class="logo half-step mobile-only" src="{{ site.github.url }}/images/logo-white.svg" alt="Pop's Logo">
 
                 <div class="menu shadow-box half-step not-mobile"></div>
 
                 <nav class="navbar">
                     <ul class="navbar__nav list--inline-block list--no-bullets">
-                        <li class="mobile-only"><a href="downloads/pops-menu.pdf" target="_blank">Menu</a></li>
+                        <li class="mobile-only"><a href="{{ site.github.url }}/downloads/pops-menu.pdf" target="_blank">Menu</a></li>
                         <li><a class="js-modal" href="#our-story">Our Story</a></li>
                         <li><a class="js-modal" href="#find-us">Find Us</a></li>
                         <li><a target="_blank" href="https://www.trycaviar.com/washington-dc/pops-seabar-731">Delivery</a></li>
@@ -84,8 +84,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
         {% else %}
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/fancybox/source/jquery.fancybox.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/fancybox/source/jquery.fancybox.js"></script>
         {% endif %}
         <script>
             (function($, window, document, undefined) {
