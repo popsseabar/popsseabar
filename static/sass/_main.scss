@@ -1,0 +1,395 @@
+/* ==========================================================================
+   Main styles
+   ========================================================================== */
+
+@media only screen and (min-width: 640px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .not-mobile {
+        display: none !important;
+    }
+}
+
+.notification-box {
+    background-color: $menu-color;
+    color: #fff;
+    font-size: 1em;
+    position: relative;
+    padding: 0 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+
+    .fancybox-close {
+        top: 50%;
+        right: 2rem;
+        margin-top: -18px;
+        margin-right: -18px;
+        text-decoration: none;
+        border: none;
+        z-index: 0;
+        &:before {
+            color: #fff;
+        }
+    }
+}
+
+.notification-box__message {
+    padding: 1rem 0;
+    text-align: center;
+    margin: 0 auto;
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+}
+
+@media only screen and (min-width: 67rem) {
+    .notification-box__message {
+        max-width: 64rem;
+    }
+}
+
+@media only screen and (min-width: 90.1rem) {
+    .notification-box__message {
+        max-width: 80rem;
+    }
+}
+
+@media only screen and (min-width: 100.1rem) {
+    .notification-box__message {
+        max-width: 90rem;
+    }
+}
+
+.flex-center {
+    min-height: 100%;
+
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    display: -moz-box;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+
+    display: box;
+    box-align: center;
+    box-pack: center;
+}
+
+.container {
+    width: 100%;
+    padding: 5%;
+}
+
+@media only screen and (min-width: 30rem) {
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+    .rhythm {
+        margin-bottom: 1.5rem !important;
+    }
+    .step {
+        margin-bottom: 1rem;
+    }
+    .half-step {
+        margin-bottom: 0.75rem;
+    }
+    .baby-step {
+        margin-bottom: 0.25rem;
+    }
+
+.shadow-box {
+    // background-color: #fff;
+    box-shadow: 0 0 10px 5px #d5d1c2;
+    -moz-box-shadow: 0 0 10px 5px #d5d1c2;
+    -webkit-box-shadow: 0 0 10px 5px #d5d1c2;
+}
+
+.logo {
+    max-width: 20em;
+    height: auto;
+}
+
+@media only screen and (min-width: 40rem) {
+    .logo {
+
+    }
+}
+
+.menu {
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: $menu-aspect-ratio * 100%;
+}
+
+@media only screen and (min-width: 67rem) {
+    .menu {
+        width: 64rem;
+        height: 64rem * $menu-aspect-ratio;
+        padding-bottom: 0;
+        transition-property: width, height;
+        -o-transition-property: width, height;
+        -moz-transition-property: width, height;
+        -webkit-transition-property: width, height;
+        transition-duration: 200ms, 200ms;
+    }
+}
+
+@media only screen and (min-width: 90.1rem) {
+    .menu {
+        width: 80rem;
+        height: 80rem * $menu-aspect-ratio;
+        padding-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 100.1rem) {
+    .menu {
+        width: 90rem;
+        height: 90rem * $menu-aspect-ratio;
+        padding-bottom: 0;
+    }
+}
+
+.navbar {
+    font-size: 0.8em;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+@media only screen and (min-width: 40rem) {
+    .navbar__nav {
+        margin-bottom: 0;
+        li {
+            &:before {
+                content: "• ";
+            }
+            &:nth-child(2):before {
+                content: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .navbar__nav {
+        margin-bottom: 0;
+        li {
+            &:before {
+                content: "";
+            }
+        }
+    }
+}
+
+.navbar__social-nav {
+    margin-bottom: 0;
+    margin-left: 0.333em;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .navbar__social-nav { display: none !important; }
+}
+
+.list--inline-block {
+    display: block;
+    li {
+        display: block;
+    }
+    a {
+        display: block;
+        padding: 1.25em;
+        margin-bottom: 0.5em;
+        background: $menu-color;
+        color: #fff;
+        transition: background 200ms;
+        &:hover, &:active, &:focus {
+            text-decoration: none;
+            background: rgba($menu-color,0.85);
+            outline: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 40rem) {
+    .list--inline-block {
+        display: inline-block;
+        li {
+            display: inline-block;
+        }
+        a {
+            box-shadow: none;
+            display: inline;
+            padding: 0;
+            margin-bottom: 0;
+            background: none;
+            color: $menu-color;
+            &:hover, &:active, &:focus {
+                text-decoration: underline;
+                background: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: portrait) {
+    .list--inline-block {
+        display: block;
+        li {
+            display: block;
+        }
+        a {
+            display: block;
+            padding: 1.25em;
+            margin-bottom: 0.5em;
+            background: $menu-color;
+            color: #fff;
+            transition: background 200ms;
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+                background: rgba($menu-color,0.85);
+                outline: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+       and (orientation: landscape) {
+    .list--inline-block {
+        display: inline-block;
+        li {
+            display: inline-block;
+        }
+        a {
+            box-shadow: none;
+            display: inline;
+            padding: 0;
+            margin-bottom: 0;
+            background: none;
+            color: $menu-color;
+            &:hover, &:active, &:focus {
+                text-decoration: underline;
+                background: none;
+            }
+        }
+    }
+}
+
+.list--no-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+
+.fancybox-skin {
+    @extend .rhythm;
+    background-color: $menu-bgcolor;
+    border-radius: 0;
+    border: 6px $menu-color solid;
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: 4px;
+      border: 2px $menu-color solid;
+    }
+}
+
+.fancybox-overlay {
+    background: rgba(180,180,180,0.6);
+}
+
+.fancybox-wrap {
+    max-width: 40rem;
+}
+
+.fancybox-inner {
+    overflow: hidden !important;
+    height: auto !important;
+    width: 100% !important;
+}
+
+.fancybox-content {
+    font-family: $fancy-fonts;
+    display: none;
+    // max-width: 40rem;
+    color: $menu-color;
+    color: rgba($menu-color,0.9);
+    font-size: 1.2em;
+    line-height: 1.5;
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.fancybox-content--left-align {
+    text-align: left;
+}
+
+.fancybox-content__heading {
+    color: transparent;
+    font-size: 2em;
+    line-height: 1;
+    margin-top: 0;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 28.974359%;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+@media only screen and (min-width: 30rem) {
+    .fancybox-content__heading {
+        height: 93px;
+        width: 321px;
+        padding: 0;
+    }
+}
+
+.fancybox-content__heading--our-story {
+    background-image: url(/static/img/banner-our-story.png);
+}
+
+.fancybox-content__heading--find-us {
+    background-image: url(/static/img/banner-find-us.png);
+}
+
+.fancybox-close {
+    background: $menu-color;
+    border-radius: 18px;
+    border: 1px $menu-bgcolor solid;
+    &:before {
+        content: "X";
+        font-size: 22px;
+        line-height: 36px;
+        font-weight: bold;
+        color: $menu-bgcolor;
+    }
+}
+

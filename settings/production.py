@@ -1,0 +1,10 @@
+from .base import *
+
+
+"""
+COMPRESSION CONFIGURATION
+"""
+
+LIBSASS_SOURCE_COMMENTS = False
+
+LIBSASS_OUTPUT_STYLE = 'compressed'
