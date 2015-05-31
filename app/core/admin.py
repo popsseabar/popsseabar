@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
+from core.models import Options
+
 
 class RestrictedUserAdmin(UserAdmin):
     """
@@ -31,3 +33,17 @@ class RestrictedUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, RestrictedUserAdmin)
+
+
+class OptionsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        """
+        Don't allow addition of 2nd model instance in Django admin
+        See: http://stackoverflow.com/a/12469482
+        """
+        if self.model.objects.count() > 0:
+            return False
+        else:
+            return True
+
+admin.site.register(Options, OptionsAdmin)
