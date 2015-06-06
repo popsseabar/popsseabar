@@ -1,7 +1,8 @@
 #!/bin/sh
 
-if [ $DJANGO_SETTINGS_MODULE = "settings.development" ]; then
+if [ $DJANGO_SETTINGS_MODULE = "popsseabar.settings.development" ]; then
     PYTHONUNBUFFERED=True python manage.py runserver
+    # PYTHONUNBUFFERED=True python -m pdb manage.py runserver
 else
-    gunicorn wsgi --log-file -
+    gunicorn popsseabar.wsgi --log-file -
 fi

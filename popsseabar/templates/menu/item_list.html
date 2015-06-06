@@ -1,0 +1,13 @@
+{% if items %}
+    <ul>
+    {% for item in items %}
+        <li>{{ item.section }}</li>
+        <li>{{ item.name}}</li>
+        <li>{{ item.description}}</li>
+        <li>{{ item.price}}</li>
+        <li>{{ item.catering_price}}</li>
+        <li>{{ item.market_price}}</li>
+        <li>----</li>
+    {% endfor %}
+    </ul>
+{% endif %}

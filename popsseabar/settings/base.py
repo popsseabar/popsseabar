@@ -22,13 +22,10 @@ PATH CONFIGURATION
 """
 
 # Absolute filesystem path to the Django project directory:
-SITE_ROOT = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = normpath(join(SITE_ROOT, 'app'))
-
-# Add project to pythonpath so you don't have to type `app` in dotted imports:
-path.append(DJANGO_ROOT)
+SITE_ROOT = dirname(DJANGO_ROOT)
 
 
 """
@@ -98,7 +95,7 @@ STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    normpath(join(SITE_ROOT, 'static')),
+    normpath(join(DJANGO_ROOT, 'static')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-STATICFILES_FINDERS
@@ -207,7 +204,7 @@ URL CONFIGURATION
 """
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'popsseabar.urls'
 
 
 """
@@ -230,8 +227,8 @@ INSTALLED_APPS = (
     'compressor',
 
     # custom apps
-    'core',
-    'menu',
+    'popsseabar',
+    'popsseabar.menu',
 )
 
 
@@ -244,4 +241,4 @@ WSGI CONFIGURATION
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'popsseabar.wsgi.application'

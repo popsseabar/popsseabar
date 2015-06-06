@@ -1,0 +1,17 @@
+{% if items %}
+    {% regroup items by section as sections %}
+    <ul>
+        {% for section in sections %}
+        <li>{{ section.grouper }}</li>
+        {% for item in section.list %}
+        <ul style="display: inline-block">
+            <li>{{ item.name }}</li>
+            {% if item.description %}
+            <li>{{ item.description }}</li>
+            {% endif %}
+            <li>{% if item.market_price %}MP{% else %}${{ item.price }}{% endif %}</li>
+        </ul>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}

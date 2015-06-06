@@ -2,11 +2,14 @@ from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+
+from .views import IndexView
+
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
+    url(r'^$', IndexView.as_view()),
+    url(r'^menu/', include('popsseabar.menu.urls', namespace='menu')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
 

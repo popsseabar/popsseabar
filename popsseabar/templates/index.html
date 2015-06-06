@@ -9,9 +9,9 @@
         <title>Pop's SeaBar</title>
         <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
         <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
         {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}" />
+        <link rel="stylesheet" href="{% static 'css/lib/fancybox.css' %}">
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
         {% endcompress %}
         <link rel="stylesheet"  href="//fonts.googleapis.com/css?family=Boogaloo">
     </head>
@@ -31,19 +31,48 @@
             <div class="container">
                 <img class="logo half-step mobile-only" src="{% static 'img/logo-white.svg' %}" alt="Pop's Logo">
 
-                <div
-                 class="menu shadow-box half-step not-mobile"
-                 style="background-image: url({{ MEDIA_URL }}menu.jpg);"
-                ></div>
+                <div class="menu shadow-box half-step not-mobile">
+                    <div
+                     class="menu__img"
+                     style="background-image: url({{ MEDIA_URL }}menu.jpg);">
+                    </div>
+                    {% if items %}
+                    {% regroup items by section as sections %}
+                    <ul>
+                        {% for section in sections %}
+                        <li>{{ section.grouper }}</li>
+                        {% for item in section.list %}
+                        <ul>
+                            <li>{{ item.name }}</li>
+                            {% if item.description %}
+                            <li>{{ item.description }}</li>
+                            {% endif %}
+                            <li>{% if item.market_price %}MP{% else %}${{ item.price }}{% endif %}</li>
+                        </ul>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
 
                 <nav class="navbar">
                     <ul class="navbar__nav list--inline-block list--no-bullets">
                         <li class="mobile-only"><a href="{{ MEDIA_URL }}menu.jpg" target="_blank">Menu</a></li>
+                        {% if option.our_story_copy %}
                         <li><a class="js-modal" href="#our-story">Our Story</a></li>
+                        {% endif %}
+                        {% if option.address or hoption.ours %}
                         <li><a class="js-modal" href="#find-us">Find Us</a></li>
-                        <li><a target="_blank" href="https://www.trycaviar.com/washington-dc/pops-seabar-731">Delivery</a></li>
-                        <li><a target="_blank" href="https://www.giftrocker.com/secure/order/?hash=41da2364">Gift Certificates</a></li>
-                        <li><a class="js-mailchimp-popup" href="http://eepurl.com/5heW5">Email List</a></li>
+                        {% endif %}
+                        {% if option.delivery_url %}
+                        <li><a target="_blank" href="{{ option.delivery_url }}">Delivery</a></li>
+                        {% endif %}
+                        {% if option.gift_certificates_url %}
+                        <li><a target="_blank" href="{{ option.gift_certificates_url }}">Gift Certificates</a></li>
+                        {% endif %}
+                        {% if option.email_signup_url %}
+                        <li><a class="js-mailchimp-popup" href="{{ option.email_signup_url }}">Email List</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar__social-nav list--inline-block list--no-bullets not-mobile">
                         <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
@@ -53,33 +82,31 @@
             </div>
         </div>
 
+        {% autoescape off %}
         <div id="our-story" class="fancybox-content fancybox-content--left-align">
             <h2 class="fancybox-content__heading fancybox-content__heading--our-story rhythm">
                 <span class="visuallyhidden">About Pop's</span>
             </h2>
-            <p>Pop's SeaBar is brought to you by business partners Chef John Manolatos and Justin Abad of Cashion's Eat Place.</p>
-            <p>The project is a Mom &amp; Pop's, boardwalk-inspired, seafood bar and restaurant. The concept was inspired by the time that each of them spent on the Jersey Boardwalk (John) and Gulf Beaches of St. Petersburg, Florida (Justin) as children with their families.</p>
-            <p>It's a playful and referential look back at the care-free establishments that made "Going to the Beach" such an exciting thing to hear while growing up!</p>
-            <p>The mantra at Pop's: Everyone relax. It's a place where you can drink a cold, canned beer, sip on traditional boardwalk cocktails like an orange crush or Lime Rickey (with our twist, of course), and slurp down some oysters from our raw bar or snack on our "Famous Boardwalk Chicken" with friends and family.</p>
-            <p>While casual and friendly, the staff is comprised of true bar and culinary pros that take hospitality very seriously. And that's about the only thing we plan on taking seriously!</p>
-            <p>Join us for lunch or dinner 7 days a week and don't forget to stop by our sister restaurant, Cashion's Eat Place, right next door!</p>
+            {{ option.our_story_copy|linebreaks }}
         </div>
 
+        {% if option.address or option.hours %}
         <div id="find-us" class="fancybox-content">
             <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
                 <span class="visuallyhidden">Find Us</span>
             </h2>
-            <ul class="list--no-bullets step">
-                <li><a href="https://goo.gl/maps/gsT2r" target="_blank">1817 Columbia Road NW<br>Washington, DC 20009</a></li>
-                <li>(202) 534-3933</li>
-                <li><a href="mailto:info@popsseabar.com">info@popsseabar.com</a></li>
-            </ul>
+            <p class="list--no-bullets step">
+                {{ option.address|linebreaksbr }}
+            </p>
+            {% if option.hours %}
             <h3 class="baby-step">Hours</h3>
-            <ul class="list--no-bullets baby-step">
-                <li>Sun-Thurs: noon-midnight</li>
-                <li>Fri-Sat: noon-2:00am</li>
-            </ul>
+            <p class="list--no-bullets baby-step">
+                {{ option.hours|linebreaksbr }}
+            </p>
+            {% endif %}
         </div>
+        {% endif %}
+        {% endautoescape %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CoreAppConfig(AppConfig):
-    name = 'core'
+class SiteAppConfig(AppConfig):
+    name = 'popsseabar'
     verbose_name = 'Site'
