@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 
 from .models import Options
-from popsseabar.menu.models import Item
+from .menu.models import Item
 
 
 class IndexView(TemplateView):

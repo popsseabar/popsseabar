@@ -1,0 +1,22 @@
+<form action="." method="post">
+    {% csrf_token %}
+    <h2>Section</h2>
+    <div>
+        {{ form }}
+    </div>
+    <fieldset>
+        <legend>Item</legend>
+        {{ item_form.management_form }}
+        {{ item_form.non_form_errors }}
+        {% for form in item_form %}
+            {{ form.id }}
+            <div class="inline {{ item_form.prefix }}">
+                {{ form.qty.errors }}
+                {{ form.qty.label_tag }}
+                {{ form.qty}}
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    <input type="submit" value="Submit" class="submit">
+</form>

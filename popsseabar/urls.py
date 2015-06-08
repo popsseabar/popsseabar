@@ -9,6 +9,7 @@ from .views import IndexView
 urlpatterns = patterns(
     '',
     url(r'^$', IndexView.as_view()),
+    url(r'^catering/', include('popsseabar.catering.urls', namespace='catering')),
     url(r'^menu/', include('popsseabar.menu.urls', namespace='menu')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),

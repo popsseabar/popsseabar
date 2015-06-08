@@ -58,21 +58,11 @@
                 <nav class="navbar">
                     <ul class="navbar__nav list--inline-block list--no-bullets">
                         <li class="mobile-only"><a href="{{ MEDIA_URL }}menu.jpg" target="_blank">Menu</a></li>
-                        {% if option.our_story_copy %}
                         <li><a class="js-modal" href="#our-story">Our Story</a></li>
-                        {% endif %}
-                        {% if option.address or hoption.ours %}
                         <li><a class="js-modal" href="#find-us">Find Us</a></li>
-                        {% endif %}
-                        {% if option.delivery_url %}
                         <li><a target="_blank" href="{{ option.delivery_url }}">Delivery</a></li>
-                        {% endif %}
-                        {% if option.gift_certificates_url %}
                         <li><a target="_blank" href="{{ option.gift_certificates_url }}">Gift Certificates</a></li>
-                        {% endif %}
-                        {% if option.email_signup_url %}
                         <li><a class="js-mailchimp-popup" href="{{ option.email_signup_url }}">Email List</a></li>
-                        {% endif %}
                     </ul>
                     <ul class="navbar__social-nav list--inline-block list--no-bullets not-mobile">
                         <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
@@ -90,7 +80,6 @@
             {{ option.our_story_copy|linebreaks }}
         </div>
 
-        {% if option.address or option.hours %}
         <div id="find-us" class="fancybox-content">
             <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
                 <span class="visuallyhidden">Find Us</span>
@@ -98,14 +87,11 @@
             <p class="list--no-bullets step">
                 {{ option.address|linebreaksbr }}
             </p>
-            {% if option.hours %}
             <h3 class="baby-step">Hours</h3>
             <p class="list--no-bullets baby-step">
                 {{ option.hours|linebreaksbr }}
             </p>
-            {% endif %}
         </div>
-        {% endif %}
         {% endautoescape %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

@@ -1,5 +1,6 @@
 from .base import *
 
+
 """
 TOOLBAR CONFIGURATION
 See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
@@ -18,3 +19,10 @@ MIDDLEWARE_CLASSES += (
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
+
+
+"""
+EMAIL CONFIGURATION
+"""
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

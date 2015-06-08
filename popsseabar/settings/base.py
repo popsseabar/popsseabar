@@ -2,7 +2,6 @@
 
 from os import environ
 from os.path import abspath, dirname, join, normpath
-from sys import path
 
 import dj_database_url
 
@@ -33,7 +32,7 @@ DEBUG CONFIGURATION
 """
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = environ.get('DEBUG', 'False') in ['True', 'true']
+DEBUG = environ.get('DEBUG', 'False').lower() == 'true'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
@@ -230,6 +229,43 @@ INSTALLED_APPS = (
     'popsseabar',
     'popsseabar.menu',
 )
+
+"""
+LOGGING CONFIGURATION
+"""
+
+DJANGO_LOG_LEVEL = environ.get('DJANGO_LOG_LEVEL').upper()
+DJANGO_LOG_LEVEL = DJANGO_LOG_LEVEL if DJANGO_LOG_LEVEL in \
+                   ['DEBUG', 'INFO', 'WARNING', 'CRITICAL'] else 'ERROR'
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': DJANGO_LOG_LEVEL,
+            'class': 'logging.StreamHandler'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
 
 
 """
