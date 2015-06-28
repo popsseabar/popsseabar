@@ -1,117 +1,87 @@
-{% load compress %}
+{% extends 'base.html' %}
 {% load staticfiles%}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Casual, boardwalk-inspired seafood bar and restaurant. Located in Adams Morgan, Washington, D.C. By the folks who brought you Cashion's Eat Place.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pop's SeaBar</title>
-        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
-        <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
-        {% compress css %}
-        <link rel="stylesheet" href="{% static 'css/lib/fancybox.css' %}">
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
-        {% endcompress %}
-        <link rel="stylesheet"  href="//fonts.googleapis.com/css?family=Boogaloo">
-    </head>
 
-    <body>
-        <h1 class="visuallyhidden">Pop's SeaBar</h1>
+{% block main %}
+    <h1 class="visuallyhidden">Pop's SeaBar</h1>
 
-        <div class="notification-box shadow-box">
-            <div class="notification-box__message">
-                Heard about our Patio Crab Feast every Sunday this summer?
-                <a href="mailto:info@popsseabar.com?subject=Crabs!">Contact us for more information!</a>
-            </div>
-            <a title="Close" class="js-notification-box-close fancybox-close" href="javascript:void(0);"></a>
+    <div class="notification-box shadow-box">
+        <div class="notification-box__message">
+            Heard about our Patio Crab Feast every Sunday this summer?
+            <a href="mailto:info@popsseabar.com?subject=Crabs!">Contact us for more information!</a>
         </div>
+        <a title="Close" class="js-notification-box-close fancybox-close" href="javascript:void(0);"></a>
+    </div>
 
-        <div class="flex-center">
-            <div class="container">
-                <img class="logo half-step mobile-only" src="{% static 'img/logo-white.svg' %}" alt="Pop's Logo">
+    <div class="flex-center">
+        <div class="container">
+            <img class="logo half-step mobile-only" src="{% static 'img/logo-white.svg' %}" alt="Pop's Logo">
 
-                <div class="menu shadow-box half-step not-mobile">
-                    <div
-                     class="menu__img"
-                     style="background-image: url({{ MEDIA_URL }}menu.jpg);">
-                    </div>
-                    {% if items %}
-                    {% regroup items by section as sections %}
-                    <ul>
-                        {% for section in sections %}
-                        <li>{{ section.grouper }}</li>
-                        {% for item in section.list %}
-                        <ul>
-                            <li>{{ item.name }}</li>
-                            {% if item.description %}
-                            <li>{{ item.description }}</li>
-                            {% endif %}
-                            <li>{% if item.market_price %}MP{% else %}${{ item.price }}{% endif %}</li>
-                        </ul>
-                        {% endfor %}
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
+            <div class="menu shadow-box half-step not-mobile">
+                <div
+                 class="menu__img"
+                 style="background-image: url({{ MEDIA_URL }}menu.jpg);">
                 </div>
 
-                <nav class="navbar">
-                    <ul class="navbar__nav list--inline-block list--no-bullets">
-                        <li class="mobile-only"><a href="{{ MEDIA_URL }}menu.jpg" target="_blank">Menu</a></li>
-                        <li><a class="js-modal" href="#our-story">Our Story</a></li>
-                        <li><a class="js-modal" href="#find-us">Find Us</a></li>
-                        <li><a target="_blank" href="{{ option.delivery_url }}">Delivery</a></li>
-                        <li><a target="_blank" href="{{ option.gift_certificates_url }}">Gift Certificates</a></li>
-                        <li><a class="js-mailchimp-popup" href="{{ option.email_signup_url }}">Email List</a></li>
-                    </ul>
-                    <ul class="navbar__social-nav list--inline-block list--no-bullets not-mobile">
-                        <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
-                        <li><a class="icon icon--facebook" href="https://www.facebook.com/popsseabar"><span class="visuallyhidden">Facebook</span></a></li>
-                    </ul>
-                </nav>
+                {% include 'menu/items_by_section.html' %}
             </div>
-        </div>
 
-        {% autoescape off %}
-        <div id="our-story" class="fancybox-content fancybox-content--left-align">
-            <h2 class="fancybox-content__heading fancybox-content__heading--our-story rhythm">
-                <span class="visuallyhidden">About Pop's</span>
-            </h2>
-            {{ option.our_story_copy|linebreaks }}
+            <nav class="navbar">
+                <ul class="navbar__nav list--inline-block list--no-bullets">
+                    <li class="mobile-only"><a href="{{ MEDIA_URL }}menu.jpg" target="_blank">Menu</a></li>
+                    <li><a class="js-modal" href="#our-story">Our Story</a></li>
+                    <li><a class="js-modal" href="#find-us">Find Us</a></li>
+                    <li><a target="_blank" href="{{ options.delivery_url }}">Delivery</a></li>
+                    <li><a target="_blank" href="{{ options.gift_certificates_url }}">Gift Certificates</a></li>
+                    <li><a class="js-mailchimp-popup" href="{{ options.email_signup_url }}">Email List</a></li>
+                </ul>
+                <ul class="navbar__social-nav list--inline-block list--no-bullets not-mobile">
+                    <li><a class="icon icon--twitter" href="https://twitter.com/popsseabar"><span class="visuallyhidden">Twitter</span></a></li>
+                    <li><a class="icon icon--facebook" href="https://www.facebook.com/popsseabar"><span class="visuallyhidden">Facebook</span></a></li>
+                </ul>
+            </nav>
         </div>
+    </div>
 
-        <div id="find-us" class="fancybox-content">
-            <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
-                <span class="visuallyhidden">Find Us</span>
-            </h2>
-            <p class="list--no-bullets step">
-                {{ option.address|linebreaksbr }}
-            </p>
-            <h3 class="baby-step">Hours</h3>
-            <p class="list--no-bullets baby-step">
-                {{ option.hours|linebreaksbr }}
-            </p>
-        </div>
-        {% endautoescape %}
+    {% autoescape off %}
+    <div id="our-story" class="fancybox-content fancybox-content--left-align">
+        <h2 class="fancybox-content__heading fancybox-content__heading--our-story rhythm">
+            <span class="visuallyhidden">About Pop's</span>
+        </h2>
+        {{ options.our_story_copy|linebreaks }}
+    </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-        <script>
-            (function($, window, document, undefined) {
-                $(document).ready(function() {
-                    $('.js-mailchimp-popup').click(function(e) {
-                        e.preventDefault();
-                        var href = $(this).attr('href');
-                        window.open(href, "Email Signup", "height=770,width=700,resizable=1");
-                    });
-                    $('.js-modal').fancybox({
-                        padding: 32
-                    });
-                    $('.js-notification-box-close').click(function() {
-                        $('.notification-box').slideUp();
-                    });
+    <div id="find-us" class="fancybox-content">
+        <h2 class="fancybox-content__heading fancybox-content__heading--find-us rhythm">
+            <span class="visuallyhidden">Find Us</span>
+        </h2>
+        <p class="list--no-bullets step">
+            {{ options.address|linebreaksbr }}
+        </p>
+        <h3 class="baby-step">Hours</h3>
+        <p class="list--no-bullets baby-step">
+            {{ options.hours|linebreaksbr }}
+        </p>
+    </div>
+    {% endautoescape %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        (function($, window, document, undefined) {
+            $(document).ready(function() {
+                $('.js-mailchimp-popup').click(function(e) {
+                    e.preventDefault();
+                    var href = $(this).attr('href');
+                    window.open(href, "Email Signup", "height=770,width=700,resizable=1");
                 });
-            })(jQuery, window, document);
-        </script>
-    </body>
-</html>
+                $('.js-modal').fancybox({
+                    padding: 32
+                });
+                $('.js-notification-box-close').click(function() {
+                    $('.notification-box').slideUp();
+                });
+            });
+        })(jQuery, window, document);
+    </script>
+{% endblock %}

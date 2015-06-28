@@ -1,22 +1,39 @@
-<form action="." method="post">
-    {% csrf_token %}
-    <h2>Section</h2>
-    <div>
-        {{ form }}
-    </div>
-    <fieldset>
-        <legend>Item</legend>
-        {{ item_form.management_form }}
-        {{ item_form.non_form_errors }}
-        {% for form in item_form %}
-            {{ form.id }}
-            <div class="inline {{ item_form.prefix }}">
-                {{ form.qty.errors }}
-                {{ form.qty.label_tag }}
-                {{ form.qty}}
-            </div>
-        {% endfor %}
-    </fieldset>
+{% extends 'base.html' %}
+{% load grp_tags %}
 
-    <input type="submit" value="Submit" class="submit">
-</form>
+{% block title %}Catering | {% get_site_title %}{% endblock %}
+
+{% block main %}
+    {% if catering_items_and_formset %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ catering_formset.management_form }}
+
+        {% if catering_formset.errors %}
+        <div>
+            {{ catering_formset.errors }}
+        </div>
+        {% endif %}
+
+        <table>
+        {% for item, form in catering_items_and_formset %}
+        <tr>
+            <th>{{ item }}</th>
+            <th>{{ item.section }}</th>
+            <td>{{ form.qty.help_text }}</td>
+            <td>{{ form.qty.label_tag }} {{ form.qty }} {{ form.qty.errors }}</td>
+            <td>{{ form.non_field_errors }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+
+        <table>
+            {{ contact_form.as_table }}
+        </table>
+
+        <input type="submit" value="Submit" class="submit">
+    </form>
+    {% endif %}
+
+
+{% endblock %}

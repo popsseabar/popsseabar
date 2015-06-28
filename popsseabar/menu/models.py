@@ -40,7 +40,8 @@ class Item(models.Model):
         max_digits=5,
         verbose_name='Catering Price')
     market_price = models.BooleanField(default=False, verbose_name='Market Price')
-    is_active = models.BooleanField(default=True, verbose_name='Active?')
+    is_active = models.BooleanField(default=True, verbose_name='Menu?')
+    catering_active = models.BooleanField(default=True, verbose_name='Catering?')
     position = models.PositiveSmallIntegerField()
 
     class Meta:

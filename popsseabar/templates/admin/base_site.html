@@ -1,9 +1,9 @@
-{% extends "admin/base.html" %}
+{% extends 'admin/base.html' %}
 {% load grp_tags staticfiles %}
 
 {% block title %}{{ title }} | {% get_site_title %}{% endblock %}
 
 {% block extrahead %}
-<link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
-<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
 {% endblock %}

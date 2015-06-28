@@ -1,0 +1,23 @@
+{% autoescape off %}{% load grp_tags %}{% if options.catering_email_confirmation_copy %}{{ confirmation_message }}{% else %}{% get_site_title %} Catering Order{% endif %}
+
+Order information:
+{{ contact_form.name }}
+{% if contact_form.business_name %}{{ contact_form.business_name }}
+{% endif %}{{ contact_form.email }}
+{{ contact_form.address1 }}
+{% if contact_form.address2 %}{{ contact_form.address2 }}
+{% endif %}{{ contact_form.city }}, {{ contact_form.state}} {% if contact_form.zip_code %}{{ contact_form.zip_code|stringformat:"05d" }}{% endif %}
+
+Items ordered:
+
+
+{{ contact_form.name }}
+{% if contact_form.business_name %}{{ contact_form.business_name }}
+{% endif %}{{ contact_form.email }}
+{{ contact_form.address1 }}
+{% if contact_form.address2 %}{{ contact_form.address2 }}
+{% endif %}{{ contact_form.city }}, {{ contact_form.state}} {% if contact_form.zip_code %}{{ contact_form.zip_code|stringformat:"05d" }}{% endif %}
+
+Items ordered:
+
+{% endautoescape %}

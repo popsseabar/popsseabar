@@ -161,20 +161,20 @@ TEMPLATE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-#     'django.core.context_processors.debug',
-#     'django.core.context_processors.i18n',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
     'django.core.context_processors.media',
-#     'django.core.context_processors.static',
-#     'django.core.context_processors.tz',
-#     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-# TEMPLATE_LOADERS = (
-#     'django.template.loaders.filesystem.Loader',
-#     'django.template.loaders.app_directories.Loader',
-# )
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATE_DIRS = (
@@ -226,8 +226,10 @@ INSTALLED_APPS = (
     'compressor',
 
     # custom apps
+    'popsseabar.site',
     'popsseabar',
     'popsseabar.menu',
+    'popsseabar.catering',
 )
 
 """
@@ -245,26 +247,24 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
-        }
+        },
     },
     'handlers': {
         'console': {
             'level': DJANGO_LOG_LEVEL,
             'class': 'logging.StreamHandler'
         },
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console', 'mail_admins'],
+            'handlers': ['console'],
             'level': 'DEBUG',
-            'propagate': False,
         },
-    }
+        'popsseabar': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
 }
 
 

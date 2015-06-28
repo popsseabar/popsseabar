@@ -1,70 +1,102 @@
-import logging
+import logging, pprint
 
+from django.core.mail import send_mail
+from django.forms.models import formset_factory
 from django.http import HttpResponseRedirect
-from django.views.generic import CreateView
+from django.template.loader import render_to_string
+from django.views.generic import FormView
 
-from .forms import SectionForm, ItemFormSet
-from ..menu.models import Section
+from .forms import CateringForm, ContactForm
+from ..menu.models import Item
+from ..site.models import Options
 
 
-class CateringView(CreateView):
+logger = logging.getLogger('popsseabar')
+pp = pprint.PrettyPrinter(indent=4)
+
+
+class CateringView(FormView):
     template_name = 'catering/index.html'
-    model = Section
-    form_class = SectionForm
+    form_class = CateringForm
     success_url = 'success/'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         """
         Handles GET requests and instantiates blank versions of the form
         and its inline formsets.
         """
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        item_form = ItemFormSet()
 
-        logger = logging.getLogger('django.request')
-        logger.debug('FOO!!!!!!!!!!!!!!!!!!!!!!')
+        catering_items = Item.objects.filter(catering_active=True)\
+                             .order_by('section', 'position')
+        CateringFormSet = formset_factory(CateringForm, extra=catering_items.count())
+        catering_formset = CateringFormSet(prefix='catering')
+        catering_items_and_formset = zip(catering_items, catering_formset)
+
+        contact_form = ContactForm(prefix='contact')
 
         return self.render_to_response(
-            self.get_context_data(form=form,
-                                  item_form=item_form))
+            self.get_context_data(catering_items=catering_items,
+                                  catering_formset=catering_formset,
+                                  catering_items_and_formset=catering_items_and_formset,
+                                  contact_form=contact_form))
 
-    # def post(self, request, *args, **kwargs):
-    #     """
-    #     Handles POST requests, instantiating a form instance and its inline
-    #     formsets with the passed POST variables and then checking them for
-    #     validity.
-    #     """
-    #     self.object = None
-    #     form_class = self.get_form_class()
-    #     form = self.get_form(form_class)
-    #     ingredient_form = IngredientFormSet(self.request.POST)
-    #     instruction_form = InstructionFormSet(self.request.POST)
-    #     if (form.is_valid() and ingredient_form.is_valid() and
-    #         instruction_form.is_valid()):
-    #         return self.form_valid(form, ingredient_form, instruction_form)
-    #     else:
-    #         return self.form_invalid(form, ingredient_form, instruction_form)
+    def post(self, request, *args, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity.
+        """
+        catering_items = Item.objects.filter(catering_active=True)\
+                             .order_by('section', 'position')
+        CateringFormSet = formset_factory(CateringForm)
+        catering_formset = CateringFormSet(data=request.POST, prefix='catering')
+        contact_form = ContactForm(data=request.POST, prefix='contact')
 
-    def form_valid(self, form, item_form):
-        """
-        Called if all forms are valid. Creates a Recipe instance along with
-        associated Ingredients and Instructions and then redirects to a
-        success page.
-        """
-        # self.object = form.save()
-        # ingredient_form.instance = self.object
-        # ingredient_form.save()
-        # instruction_form.instance = self.object
-        # instruction_form.save()
-        return HttpResponseRedirect(self.get_success_url())
+        if catering_formset.is_valid() and contact_form.is_valid():
+            cleaned_catering_items_and_formset = zip(
+                catering_items,
+                catering_formset.cleaned_data)
+            cleaned_contact_form = contact_form.cleaned_data
 
-    def form_invalid(self, form, item_form):
-        """
-        Called if a form is invalid. Re-renders the context data with the
-        data-filled forms and errors.
-        """
-        return self.render_to_response(
-            self.get_context_data(form=form,
-                                  item_form=item_form))
+            for item, form in cleaned_catering_items_and_formset:
+                qty = form['qty']
+                if qty > 0:
+                    logger.debug(item.name + ' ' + str(qty))
+
+            message_context = {}
+            message_context['contact_form'] = cleaned_contact_form
+            message_context['catering_items_and_formset'] = \
+                cleaned_catering_items_and_formset
+            order_message = render_to_string(
+                'catering/email.txt', message_context)
+
+            # 'Thank you for placing a catering order with Pop\'s SeaBar. Our staff will be contacting you shortly to confirm your order.'
+            try:
+                message_context['options'] = Options.objects.get(pk=1)
+            except Options.DoesNotExist:
+                pass
+            confirmation_message = render_to_string(
+                'catering/email.txt', message_context)
+
+            send_mail(
+                from_email='no-reply@popsseabar.com',
+                recipient_list=['order@popsseabar.com'],
+                subject='Test',
+                message=order_message)
+
+            send_mail(
+                from_email='no-reply@popsseabar.com',
+                recipient_list=[cleaned_contact_form['email']],
+                subject='Test',
+                message=confirmation_message)
+
+            return HttpResponseRedirect(self.get_success_url())
+
+        else:
+            logger.debug('---------> Form is NOT valid')
+            catering_items_and_formset = zip(catering_items, catering_formset)
+            return self.render_to_response(
+                self.get_context_data(
+                    catering_items=catering_items,
+                    catering_formset=catering_formset,
+                    catering_items_and_formset=catering_items_and_formset,
+                    contact_form=contact_form))
