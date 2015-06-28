@@ -1,4 +1,4 @@
-{% autoescape off %}{% load grp_tags %}{% if options.catering_email_confirmation_copy %}{{ confirmation_message }}{% else %}{% get_site_title %} Catering Order{% endif %}
+{% autoescape off %}{% load grp_tags %}{% if catering_email_confirmation_copy %}{{ catering_email_confirmation_copy }}{% else %}{% get_site_title %} Catering Order{% endif %}
 
 Order information:
 {{ contact_form.name }}

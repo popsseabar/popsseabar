@@ -1,4 +1,6 @@
-import logging, pprint
+import importlib
+import logging
+from os import environ
 
 from django.core.mail import send_mail
 from django.forms.models import formset_factory
@@ -6,13 +8,15 @@ from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.generic import FormView
 
-from .forms import CateringForm, ContactForm
 from ..menu.models import Item
-from ..site.models import Options
+from .forms import CateringForm, ContactForm
+from .models import Options
 
+
+settings_module = environ.get('DJANGO_SETTINGS_MODULE')
+settings = importlib.import_module(settings_module)
 
 logger = logging.getLogger('popsseabar')
-pp = pprint.PrettyPrinter(indent=4)
 
 
 class CateringView(FormView):
@@ -45,6 +49,13 @@ class CateringView(FormView):
         Handles POST requests, instantiating a form instance with the passed
         POST variables and then checked for validity.
         """
+
+        # check if options exist, if not throw a 500 error
+        try:
+            options = Options.objects.get(pk=1)
+        except Options.DoesNotExist:
+            raise Exception('Catering options not defined')
+
         catering_items = Item.objects.filter(catering_active=True)\
                              .order_by('section', 'position')
         CateringFormSet = formset_factory(CateringForm)
@@ -57,34 +68,28 @@ class CateringView(FormView):
                 catering_formset.cleaned_data)
             cleaned_contact_form = contact_form.cleaned_data
 
-            for item, form in cleaned_catering_items_and_formset:
-                qty = form['qty']
-                if qty > 0:
-                    logger.debug(item.name + ' ' + str(qty))
-
             message_context = {}
             message_context['contact_form'] = cleaned_contact_form
             message_context['catering_items_and_formset'] = \
                 cleaned_catering_items_and_formset
+
             order_message = render_to_string(
                 'catering/email.txt', message_context)
 
-            # 'Thank you for placing a catering order with Pop\'s SeaBar. Our staff will be contacting you shortly to confirm your order.'
-            try:
-                message_context['options'] = Options.objects.get(pk=1)
-            except Options.DoesNotExist:
-                pass
+            # TODO: move trimming to the model
+            message_context['catering_email_confirmation_copy'] = \
+                options.catering_email_confirmation_copy.strip()
             confirmation_message = render_to_string(
                 'catering/email.txt', message_context)
 
             send_mail(
-                from_email='no-reply@popsseabar.com',
-                recipient_list=['order@popsseabar.com'],
+                from_email=getattr(settings, 'SERVER_EMAIL'),
+                recipient_list=[options.catering_orders_email],
                 subject='Test',
                 message=order_message)
 
             send_mail(
-                from_email='no-reply@popsseabar.com',
+                from_email=getattr(settings, 'SERVER_EMAIL'),
                 recipient_list=[cleaned_contact_form['email']],
                 subject='Test',
                 message=confirmation_message)

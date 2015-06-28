@@ -226,10 +226,10 @@ INSTALLED_APPS = (
     'compressor',
 
     # custom apps
-    'popsseabar.site',
     'popsseabar',
     'popsseabar.menu',
     'popsseabar.catering',
+    'popsseabar.site',
 )
 
 """
@@ -266,6 +266,13 @@ LOGGING = {
         },
     },
 }
+
+
+"""
+EMAIL CONFIGURATION
+"""
+
+SERVER_EMAIL = environ.get('SERVER_EMAIL', 'root@localhost')
 
 
 """

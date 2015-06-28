@@ -1,17 +1,6 @@
 from django.db import models
-from django.core.exceptions import ValidationError
 
-
-def validate_only_one_instance(obj):
-    """
-    Throw ValidationError if you try to save more than one instance
-    See: http://stackoverflow.com/a/6436008
-    """
-    model = obj.__class__
-    if (model.objects.count() > 0 and
-            obj.id != model.objects.get().id):
-        raise ValidationError(
-            'Can only create 1 instance of {}.'.format(model.__name__))
+from ..models import validate_only_one_instance
 
 
 class Options(models.Model):
@@ -21,8 +10,6 @@ class Options(models.Model):
     delivery_url = models.CharField(max_length=200)
     gift_certificates_url = models.CharField(max_length=200)
     email_signup_url = models.CharField(max_length=200)
-    catering_orders_email = models.EmailField()
-    catering_email_confirmation_copy = models.TextField()
 
     def clean(self):
         validate_only_one_instance(self)
