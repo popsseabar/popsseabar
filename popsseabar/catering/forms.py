@@ -1,5 +1,6 @@
 from django.forms import Form, CharField, ChoiceField, \
     EmailField, IntegerField, TypedChoiceField
+from django.forms.widgets import Textarea
 
 
 class CateringForm(Form):
@@ -11,6 +12,9 @@ class CateringForm(Form):
 
 
 class ContactForm(Form):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
     ZIP_ERROR = 'Enter a valid 5 digit zip code.'
 
     name = CharField()
@@ -33,3 +37,4 @@ class ContactForm(Form):
             'min_value': ZIP_ERROR,
             'max_value': ZIP_ERROR,
         })
+    notes = CharField(required=False, widget=Textarea())

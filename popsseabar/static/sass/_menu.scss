@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Menu
+   ========================================================================== */
+
+.menu-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu {
+    position: relative;
+    height: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: transparent;
+    overflow: hidden;
+    transition-property: width, height;
+    transition-duration: 200ms, 200ms;
+}
+
+    .menu__img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: $menu-bgcolor;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+@media only screen and (min-width: 67rem) {
+    .menu-container {
+        display: inline-block;
+    }
+
+    .menu {
+        width: 64rem;
+    }
+}
+
+@media only screen and (min-width: 90.1rem) {
+    .menu {
+        width: 80rem;
+    }
+}
+
+@media only screen and (min-width: 100.1rem) {
+    .menu {
+        width: 90rem;
+    }
+}
+

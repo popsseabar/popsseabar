@@ -1,9 +1,9 @@
 Django==1.8.1
-SQLAlchemy==1.0.4
+Pillow==2.8.2
 dj-database-url==0.3.0
 django-compressor==1.5
 django-grappelli==2.6.4
 django-libsass==0.3
-django-postgrespool==0.3.0
 psycopg2==2.6
+sorl-thumbnail==12.2
 whitenoise==1.0.6

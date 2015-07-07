@@ -1,5 +1,9 @@
 from django.db import models
 
+from sorl.thumbnail import ImageField
+
+from ..models import validate_only_one_instance
+
 
 class Section(models.Model):
     name = models.CharField(max_length=200)
@@ -49,3 +53,18 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Image(models.Model):
+    url = ImageField(upload_to='',
+                     height_field='height',
+                     width_field='width',
+                     verbose_name='Menu')
+    height = models.PositiveIntegerField(editable=False)
+    width = models.PositiveIntegerField(editable=False)
+
+    def clean(self):
+        validate_only_one_instance(self)
+
+    def __str__(self):
+        return 'Menu'

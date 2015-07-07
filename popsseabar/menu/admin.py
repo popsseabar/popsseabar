@@ -1,13 +1,16 @@
 from django.contrib import admin
 
 from grappelli.forms import GrappelliSortableHiddenMixin
+from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Section, Item
+from ..admin import SingleInstanceAdmin
+from .models import Section, Item, Image
 
 
 class ItemInline(GrappelliSortableHiddenMixin, admin.TabularInline):
     model = Item
     extra = 0
+
 
 class SectionAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -23,3 +26,9 @@ class SectionAdmin(admin.ModelAdmin):
         )
 
 admin.site.register(Section, SectionAdmin)
+
+
+class ImageAdmin(SingleInstanceAdmin, AdminImageMixin, admin.ModelAdmin):
+    pass
+
+admin.site.register(Image, ImageAdmin)

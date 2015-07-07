@@ -4,8 +4,9 @@ from ..models import validate_only_one_instance
 
 
 class Options(models.Model):
-    catering_orders_email = models.EmailField()
+    catering_page_copy = models.TextField()
     catering_email_confirmation_copy = models.TextField()
+    catering_orders_email = models.EmailField()
 
     def clean(self):
         validate_only_one_instance(self)

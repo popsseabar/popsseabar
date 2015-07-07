@@ -4,36 +4,69 @@
 {% block title %}Catering | {% get_site_title %}{% endblock %}
 
 {% block main %}
-    {% if catering_items_and_formset %}
-    <form action="" method="post" novalidate>
-        {% csrf_token %}
-        {{ catering_formset.management_form }}
+    <div class="container">
+        <div class="box catering-box shadow-box half-step">
 
-        {% if catering_formset.errors %}
-        <div>
-            {{ catering_formset.errors }}
+            <h1>Pop's SeaBar Catering</h1>
+            <p class="rhythm">{{ catering_page_copy }}</p>
+
+            {% if catering_items_and_formset %}
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ catering_formset.management_form }}
+
+                {% for item, form in catering_items_and_formset %}
+                {% ifchanged item.section %}
+                {% if not forloop.first %}
+                </table>
+                {% endif %}
+                <table class="catering-table rhythm">
+                    <tr class="catering-table__row">
+                        <th class="catering-table__heading--section">
+                            <h3>{{ item.section }}</h3>
+                        </th>
+                        <th class="catering-table__heading catering-table__heading--price">Price</th>
+                        <th class="catering-table__heading catering-table__heading--qty">Quantity</th>
+                    </tr>
+                {% endifchanged %}
+                    <tr class="catering-table__row">
+                        <td class="catering-table__item">
+                            {{ item }}
+                            {% if item.description %}<span class="catering-table__description">{{ item.description }}</span>{% endif %}
+                        </td>
+                        <td class="catering-table__price">
+                            {% if item.market_price %}
+                            <span title="Market Price">MP</span>
+                            {% else %}
+                            ${{ item.catering_price }}
+                            {% endif %}
+                        </td>
+                        <td class="catering-table__qty">
+                            {{ form.qty }}
+                        </td>
+                    </tr>
+                {% if forloop.last %}
+                </table>
+                {% endif %}
+                {% endfor %}
+
+                <h2>Contact Information</h2>
+                <ul class="catering-list list--no-bullets clearfix">
+                    {% for form in contact_form %}
+                    <li>
+                        {{ form.label_tag }}
+                        {{ form }}
+                        {{ form.errors }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <button class="catering-button" type="submit">Submit</button>
+                <a class="catering-link" href="/">back</a>
+            </form>
+            {% endif %}
+
         </div>
-        {% endif %}
-
-        <table>
-        {% for item, form in catering_items_and_formset %}
-        <tr>
-            <th>{{ item }}</th>
-            <th>{{ item.section }}</th>
-            <td>{{ form.qty.help_text }}</td>
-            <td>{{ form.qty.label_tag }} {{ form.qty }} {{ form.qty.errors }}</td>
-            <td>{{ form.non_field_errors }}</td>
-        </tr>
-        {% endfor %}
-        </table>
-
-        <table>
-            {{ contact_form.as_table }}
-        </table>
-
-        <input type="submit" value="Submit" class="submit">
-    </form>
-    {% endif %}
-
+    </div>
 
 {% endblock %}

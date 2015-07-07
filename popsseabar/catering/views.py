@@ -52,8 +52,8 @@ class CateringView(FormView):
 
         # check if options exist, if not throw a 500 error
         try:
-            options = Options.objects.get(pk=1)
-        except Options.DoesNotExist:
+            options = Options.objects.all().order_by('pk').reverse()[0]
+        except IndexError:
             raise Exception('Catering options not defined')
 
         catering_items = Item.objects.filter(catering_active=True)\
@@ -72,7 +72,6 @@ class CateringView(FormView):
             message_context['contact_form'] = cleaned_contact_form
             message_context['catering_items_and_formset'] = \
                 cleaned_catering_items_and_formset
-
             order_message = render_to_string(
                 'catering/email.txt', message_context)
 
@@ -85,13 +84,13 @@ class CateringView(FormView):
             send_mail(
                 from_email=getattr(settings, 'SERVER_EMAIL'),
                 recipient_list=[options.catering_orders_email],
-                subject='Test',
+                subject='Pop\'s SeaBar Catering Order Received',
                 message=order_message)
 
             send_mail(
                 from_email=getattr(settings, 'SERVER_EMAIL'),
                 recipient_list=[cleaned_contact_form['email']],
-                subject='Test',
+                subject='Pop\'s SeaBar Catering Order Confirmation',
                 message=confirmation_message)
 
             return HttpResponseRedirect(self.get_success_url())
