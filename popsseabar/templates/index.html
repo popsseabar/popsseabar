@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles thumbnail %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/lib/fancybox.css' %}">
+{% endblock %}
+
 {% block main %}
     <div itemscope itemtype="http://schema.org/Restaurant">
         <a class="visuallyhidden" href="/" itemprop="url"><h1 itemprop="name">Pop's SeaBar</h1></a>
@@ -84,20 +88,18 @@
 {% block scripts %}
     <script src="{% static 'js/lib/jquery.fancybox.min.js' %}"></script>
     <script>
-        (function($, window, document, undefined) {
-            $(document).ready(function() {
-                $('.js-mailchimp-popup').click(function(e) {
-                    e.preventDefault();
-                    var href = $(this).attr('href');
-                    window.open(href, "Email Signup", "height=770,width=700,resizable=1");
-                });
-                $('.js-modal').fancybox({
-                    padding: 32
-                });
-                $('.js-notification-box-close').click(function() {
-                    $('.notification-box').slideUp();
-                });
+        $(function() {
+            $('.js-mailchimp-popup').click(function(e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                window.open(href, "Email Signup", "height=770,width=700,resizable=1");
             });
-        })(jQuery, window, document);
+            $('.js-modal').fancybox({
+                padding: 32
+            });
+            $('.js-notification-box-close').click(function() {
+                $('.notification-box').slideUp();
+            });
+        });
     </script>
 {% endblock %}

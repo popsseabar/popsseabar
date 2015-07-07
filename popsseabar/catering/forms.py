@@ -1,5 +1,8 @@
+import time
+
 from django.forms import Form, CharField, ChoiceField, \
-    EmailField, IntegerField, TypedChoiceField
+    DateField, DateInput, EmailField, EmailInput, IntegerField, \
+    TextInput, TypedChoiceField
 from django.forms.widgets import Textarea
 
 from captcha.fields import CaptchaField
@@ -19,12 +22,13 @@ class ContactForm(Form):
 
     ZIP_ERROR = 'Enter a valid 5 digit zip code.'
 
-    name = CharField()
+    name = CharField(widget=TextInput(attrs={'placeholder': 'Justin Doe'}))
     business_name = CharField(required=False)
-    email = EmailField()
-    address1 = CharField(label='Address')
+    email = EmailField(widget=EmailInput(attrs={'placeholder': 'justin@example.com'}))
+    address1 = CharField(label='Address',
+        widget=TextInput(attrs={'placeholder': '1817 Columbia Road NW'}))
     address2 = CharField(label='Address 2', required=False)
-    city = CharField(initial='Washington')
+    city = CharField(widget=TextInput(attrs={'placeholder': 'Washington'}))
     state = ChoiceField(
         choices=(('DC', 'District of Columbia'),
                  ('MD', 'Maryland'),
@@ -39,5 +43,8 @@ class ContactForm(Form):
             'min_value': ZIP_ERROR,
             'max_value': ZIP_ERROR,
         })
+    catering_date = DateField(widget=DateInput(attrs={'class': 'datepicker',
+                                                      'placeholder': time.strftime("%m/%d/%Y")},
+                                               format='%m/%d/%Y'))
     notes = CharField(required=False, widget=Textarea())
     captcha = CaptchaField()

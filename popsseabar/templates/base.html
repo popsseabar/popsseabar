@@ -11,11 +11,8 @@
         <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
         <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
 
-        {% compress css %}
-        <link rel="stylesheet" href="{% static 'css/lib/fancybox.css' %}">
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
-        {% endcompress %}
-
+        {% block styles %}{% endblock %}
+        {% compress css %}<link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">{% endcompress %}
         <link rel="stylesheet"  href="//fonts.googleapis.com/css?family=Boogaloo">
     </head>
 

@@ -94,7 +94,7 @@
 
     input {
         padding: 2px 4px;
-        width: 250px;
+        width: 196px;
         font-family: 'Lucida Grande', sans-serif;
         border: solid 1px Gainsboro;
         vertical-align: top;
@@ -128,15 +128,19 @@
         }
     }
 
-    #id_contact-city,
-    #id_contact-zip_code {
-        width: 137px;
+    #id_contact-zip_code,
+    #id_contact-catering_date {
+        width: 78px;
     }
 
     #id_contact-captcha_1 {
         width: 60px;
     }
 
+}
+
+#ui-datepicker-div {
+    font-size: 0.667em;
 }
 
 .catering-button {
@@ -153,4 +157,5 @@
     text-decoration: underline;
     text-transform: lowercase;
 }
+
 

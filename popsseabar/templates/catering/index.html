@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
-{% load grp_tags %}
+{% load grp_tags static %}
 
 {% block title %}Catering | {% get_site_title %}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/lib/jquery-ui/jquery-ui.min.css' %}">
+{% endblock %}
 
 {% block main %}
     <div class="container">
@@ -68,5 +72,19 @@
 
         </div>
     </div>
-
 {% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/lib/jquery-ui.min.js' %}"></script>
+    <script>
+        $(function() {
+            var dateToday = new Date();
+            $('.datepicker').datepicker({
+                autoSize: true,
+                maxDate: '+3m',
+                minDate: dateToday
+            });
+        });
+    </script>
+{% endblock %}
+
