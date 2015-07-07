@@ -2,6 +2,8 @@ from django.forms import Form, CharField, ChoiceField, \
     EmailField, IntegerField, TypedChoiceField
 from django.forms.widgets import Textarea
 
+from captcha.fields import CaptchaField
+
 
 class CateringForm(Form):
     qty = TypedChoiceField(
@@ -38,3 +40,4 @@ class ContactForm(Form):
             'max_value': ZIP_ERROR,
         })
     notes = CharField(required=False, widget=Textarea())
+    captcha = CaptchaField()

@@ -220,6 +220,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # third-party apps
+    'captcha',
     'compressor',
     'sorl.thumbnail',
 
@@ -271,6 +272,14 @@ EMAIL CONFIGURATION
 """
 
 SERVER_EMAIL = environ.get('SERVER_EMAIL', 'root@localhost')
+
+
+"""
+CAPTCHA CONFIGURATION
+"""
+
+CAPTCHA_LETTER_ROTATION = None
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 
 
 """

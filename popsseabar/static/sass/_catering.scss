@@ -97,6 +97,7 @@
         width: 250px;
         font-family: 'Lucida Grande', sans-serif;
         border: solid 1px Gainsboro;
+        vertical-align: top;
     }
 
     textarea {
@@ -112,6 +113,7 @@
     .errorlist {
         @extend .list--inline-block;
         display: block;
+        vertical-align: top;
         margin-bottom: 0;
         margin-left: 100px;
         padding-left: 2px;
@@ -129,6 +131,10 @@
     #id_contact-city,
     #id_contact-zip_code {
         width: 137px;
+    }
+
+    #id_contact-captcha_1 {
+        width: 60px;
     }
 
 }
