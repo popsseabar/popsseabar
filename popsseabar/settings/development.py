@@ -16,8 +16,10 @@ MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
+# See: http://django-debug-toolbar.readthedocs.org/en/1.3.2/configuration.html#debug-toolbar-config
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
+    'JQUERY_URL': ''
 }
 
 

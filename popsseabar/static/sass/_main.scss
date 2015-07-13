@@ -2,6 +2,10 @@
    Main styles
    ========================================================================== */
 
+.itemscope {
+    height: 100%;
+}
+
 @media only screen and (min-width: 640px) {
     .mobile-only {
         display: none !important;

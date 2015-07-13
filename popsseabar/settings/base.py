@@ -49,6 +49,29 @@ DATABASES['default'] = dj_database_url.config()
 
 
 """
+CACHE CONFIGURATION
+"""
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": environ.get('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+
+"""
+SESSION CONFIGURATION
+"""
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+
+"""
 GENERAL CONFIGURATION
 """
 
@@ -77,7 +100,6 @@ MEDIA_ROOT = normpath(join(SITE_ROOT, 'build', 'media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
-
 
 """
 STATIC FILE CONFIGURATION
@@ -112,8 +134,7 @@ COMPRESSION CONFIGURATION
 # See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = True
 
-# See: http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-#COMPRESS_OFFLINE = True
+COMPRESS_OUTPUT_DIR = 'cache'
 
 # See: http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_CSS_HASHING_METHOD
 COMPRESS_CSS_HASHING_METHOD = 'content'
