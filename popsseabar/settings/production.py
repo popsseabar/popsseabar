@@ -4,16 +4,14 @@ from .base import *
 """
 COMPRESSION CONFIGURATION
 """
-
 LIBSASS_SOURCE_COMMENTS = False
 LIBSASS_OUTPUT_STYLE = 'compressed'
 
 
 """
 DJANGO STORAGES
-See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html
 """
-
+# See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html
 INSTALLED_APPS += (
     'storages',
 )
@@ -25,3 +23,14 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = environ.get('AWS_S3_CUSTOM_DOMAIN')
 AWS_QUERYSTRING_AUTH = False
+
+
+"""
+EMAIL CONFIGURATION
+"""
+# See: https://github.com/django-ses/django-ses
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+# AWS_SES_REGION_NAME = environ.get('AWS_SES_REGION_NAME')
+# AWS_SES_REGION_ENDPOINT = environ.get('AWS_SES_REGION_ENDPOINT')
+AWS_SES_RETURN_PATH = environ.get('AWS_SES_RETURN_PATH')

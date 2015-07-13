@@ -6,8 +6,7 @@ from django.views.generic import TemplateView
 
 from .views import IndexView
 
-urlpatterns = patterns(
-    '',
+urlpatterns = patterns('',
     url(r'^$', IndexView.as_view()),
     url(r'^404/', TemplateView.as_view(template_name='404.html')),
     url(r'^500/', TemplateView.as_view(template_name='500.html')),

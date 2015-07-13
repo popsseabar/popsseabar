@@ -4,6 +4,16 @@
 {% block title %}Success | {% get_site_title %}{% endblock %}
 
 {% block main %}
-    <h1>Success</h1>
+    <div class="container">
+        <div class="box catering-box shadow-box">
+            <h1 class="rhythm">Pop's SeaBar Catering Order</h1>
+            <div class="step">
+                {% autoescape off %}
+                {{ catering_email_confirmation_copy|linebreaks }}
+                {% endautoescape %}
+                <a class="catering-link" href="/">home</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 

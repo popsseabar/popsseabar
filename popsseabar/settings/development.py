@@ -3,7 +3,6 @@ from .base import *
 
 """
 TOOLBAR CONFIGURATION
-See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 """
 
 INSTALLED_APPS += (
@@ -21,6 +20,13 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'JQUERY_URL': ''
 }
+
+
+"""
+CAPTCHA CONFIGURATION
+"""
+
+CAPTCHA_TEST_MODE = True
 
 
 """

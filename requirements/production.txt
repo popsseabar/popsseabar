@@ -1,5 +1,6 @@
 -r base.txt
 boto==2.38.0
+-e git+https://github.com/django-ses/django-ses.git@2fae0ebdaa96ff6daaea4edaafca3c02cdda61d8#egg=django-ses
 django-storages-redux==1.2.3
 gunicorn==19.3.0
 whitenoise==1.0.6

@@ -9,10 +9,13 @@
 
 {% block main %}
     <div class="container">
-        <div class="box catering-box shadow-box half-step">
-
+        <div class="box catering-box shadow-box">
             <h1>Pop's SeaBar Catering</h1>
-            <p class="rhythm">{{ catering_page_copy }}</p>
+            <div class="rhythm">
+                {% autoescape off %}
+                {{ catering_page_copy|linebreaks }}
+                {% endautoescape %}
+            </div>
 
             {% if catering_items_and_formset %}
             <form action="" method="post" novalidate>
@@ -54,7 +57,7 @@
                 {% endif %}
                 {% endfor %}
 
-                <h2>Contact Information</h2>
+                <h2 class="rhythm-plus-top">Contact Information</h2>
                 <ul class="catering-list list--no-bullets clearfix">
                     {% for form in contact_form %}
                     <li>
@@ -69,7 +72,6 @@
                 <a class="catering-link" href="/">back</a>
             </form>
             {% endif %}
-
         </div>
     </div>
 {% endblock %}

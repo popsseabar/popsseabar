@@ -1,0 +1,25 @@
+{% autoescape off %}
+<p>Delivery date: {{ contact_form.catering_date }}</p>
+
+<p>
+    {{ contact_form.name }}<br>
+    {% if contact_form.business_name %}
+    c/o {{ contact_form.business_name }}<br>
+    {% endif %}
+    {{ contact_form.address1 }}<br>
+    {% if contact_form.address2 %}
+    {{ contact_form.address2 }}<br>
+    {% endif %}
+    {{ contact_form.city }}, {{ contact_form.state}} {% if contact_form.zip_code %}{{ contact_form.zip_code|stringformat:"05d" }}{% endif %}<br>
+    <a href="{{ contact_form.email }}">{{ contact_form.email }}</a>
+</p>
+
+<table>
+    <tr><th style="text-align: left">Item</th><th>Qty</th></tr>
+    {% for item, form in catering_items_and_formset %}
+    {% if form.qty %}
+    <tr><td style="padding-right: 10px">{{ item }}</td><td style="text-align: right">{{ form.qty }}</td></tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% endautoescape %}
