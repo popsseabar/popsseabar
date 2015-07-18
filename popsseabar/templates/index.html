@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% load staticfiles thumbnail %}
+{% load compress staticfiles thumbnail %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/lib/fancybox.css' %}">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'lib/fancybox/source/jquery.fancybox.css' %}">
+    {% endcompress %}
 {% endblock %}
 
 {% block main %}
@@ -117,7 +119,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/lib/jquery.fancybox.min.js' %}"></script>
+    {% compress js %}
+    <script src="{% static 'lib/fancybox/source/jquery.fancybox.js' %}"></script>
     <script>
         $(function() {
             $('.js-mailchimp-popup').click(function(e) {
@@ -133,4 +136,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock %}

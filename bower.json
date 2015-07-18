@@ -1,8 +1,9 @@
 {
   "name": "popsseabar",
   "private": true,
-  "devDependencies": {
-    "jquery": "~2.1.1",
-    "fancybox": "~2.1.5"
+  "dependencies": {
+    "jquery": "2.1.1",
+    "jquery-ui": "1.11.4",
+    "fancybox": "2.1.5"
   }
 }

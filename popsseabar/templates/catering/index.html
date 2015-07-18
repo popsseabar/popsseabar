@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
-{% load grp_tags static %}
+{% load compress grp_tags static %}
 
 {% block title %}Catering | {% get_site_title %}{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/lib/jquery-ui/jquery-ui.min.css' %}">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui/themes/smoothness/jquery-ui.css' %}">
+    {% endcompress %}
 {% endblock %}
 
 {% block main %}
@@ -77,7 +79,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/lib/jquery-ui.min.js' %}"></script>
+    {% compress js %}
+    <script src="{% static 'lib/jquery-ui/ui/datepicker.js' %}"></script>
     <script>
         $(function() {
             var dateToday = new Date();
@@ -88,5 +91,6 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock %}
 
