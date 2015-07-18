@@ -9,6 +9,14 @@ LIBSASS_OUTPUT_STYLE = 'compressed'
 
 
 """
+STATIC FILE CONFIGURATION
+"""
+
+# See: https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+"""
 DJANGO STORAGES
 """
 # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html
