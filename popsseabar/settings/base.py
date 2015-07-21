@@ -132,8 +132,6 @@ COMPRESSION CONFIGURATION
 # See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = True
 
-COMPRESS_OFFLINE = True
-
 COMPRESS_OUTPUT_DIR = 'cache'
 
 # See: http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_CSS_HASHING_METHOD
