@@ -123,8 +123,6 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-# See: https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 """
@@ -133,6 +131,8 @@ COMPRESSION CONFIGURATION
 
 # See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = True
+
+COMPRESS_OFFLINE = True
 
 COMPRESS_OUTPUT_DIR = 'cache'
 
