@@ -120,37 +120,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
-
-
-"""
-COMPRESSION CONFIGURATION
-"""
-
-# See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
-COMPRESS_ENABLED = True
-
-COMPRESS_OUTPUT_DIR = 'cache'
-
-# See: http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_CSS_HASHING_METHOD
-COMPRESS_CSS_HASHING_METHOD = 'content'
-
-# See: https://github.com/torchbox/django-libsass
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-# See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_CSS_FILTERS
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.template.TemplateFilter',
-]
-
-# See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_JS_FILTERS
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.template.TemplateFilter',
-]
 
 
 """
@@ -240,7 +211,6 @@ INSTALLED_APPS = (
 
     # third-party apps
     'captcha',
-    'compressor',
     'sorl.thumbnail',
 
     # custom apps

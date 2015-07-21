@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
-{% load compress grp_tags static %}
+{% load grp_tags static %}
 
 {% block title %}Catering | {% get_site_title %}{% endblock %}
 
 {% block styles %}
-    {% compress css %}
     <link rel="stylesheet" href="{% static 'lib/jquery-ui/themes/smoothness/jquery-ui.css' %}">
-    {% endcompress %}
 {% endblock %}
 
 {% block main %}
@@ -79,7 +77,6 @@
 {% endblock %}
 
 {% block scripts %}
-    {% compress js %}
     <script src="{% static 'lib/jquery-ui/ui/datepicker.js' %}"></script>
     <script>
         $(function() {
@@ -91,6 +88,5 @@
             });
         });
     </script>
-    {% endcompress %}
 {% endblock %}
 

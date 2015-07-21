@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load compress grp_tags staticfiles %}
+{% load grp_tags staticfiles %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,9 +10,7 @@
         <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
 
         {% block styles %}{% endblock %}
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
-        {% endcompress %}
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
         <link rel="stylesheet"  href="//fonts.googleapis.com/css?family=Boogaloo">
     </head>
 

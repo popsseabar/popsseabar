@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
-{% load compress staticfiles thumbnail %}
+{% load staticfiles thumbnail %}
 
 {% block styles %}
-    {% compress css %}
     <link rel="stylesheet" href="{% static 'lib/fancybox/source/jquery.fancybox.css' %}">
-    {% endcompress %}
 {% endblock %}
 
 {% block main %}
@@ -119,7 +117,6 @@
 {% endblock %}
 
 {% block scripts %}
-    {% compress js %}
     <script src="{% static 'lib/fancybox/source/jquery.fancybox.js' %}"></script>
     <script>
         $(function() {
@@ -136,5 +133,4 @@
             });
         });
     </script>
-    {% endcompress %}
 {% endblock %}

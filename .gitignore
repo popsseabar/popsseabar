@@ -1,4 +1,5 @@
 .env
+.sass-cache
 __pycache__
 build
 dump.rdb
