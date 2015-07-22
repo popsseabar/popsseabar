@@ -4,7 +4,7 @@
 {% block title %}Catering | {% get_site_title %}{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'lib/jquery-ui/themes/smoothness/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui/themes/smoothness/jquery-ui.min.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -77,7 +77,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'lib/jquery-ui/ui/datepicker.js' %}"></script>
+    <script src="{% static 'lib/jquery-ui/ui/minified/datepicker.min.js' %}"></script>
     <script>
         $(function() {
             var dateToday = new Date();
