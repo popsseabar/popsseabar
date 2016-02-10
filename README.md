@@ -12,21 +12,22 @@ Home of the Boardwalk Chicken
 
 ## Setup Local Environment
 
-    $ mkvirtualenv popsseabar
+    $ mkvirtualenv --python=$(which python3) popsseabar
 
     $ createdb popsseabar
 
-    $ pip install -r requirements.txt
+    $ pip install -r requirements-dev.txt
 
     $ echo "DATABASE_URL=postgres://localhost/popsseabar" >> .env
     $ echo "DEBUG=True" >> .env
     $ echo "DJANGO_LOG_LEVEL=DEBUG" >> .env
     $ echo "DJANGO_SETTINGS_MODULE=popsseabar.settings.development" >> .env
+    $ echo "PORT=5000"
     $ echo "REDIS_URL=redis://127.0.0.1:6379/0" >> .env
-    $ echo "SECRET_KEY=foo" >> .env
+    $ echo "SECRET_KEY=foobar" >> .env
     $ echo "SERVER_EMAIL=no-reply@popsseabar.com" >> .env
 
-    $ foreman run python manage.py collectstatic
+    $ foreman run python manage.py collectstatic --noinput
     $ foreman run python manage.py migrate
 
 ## Local Development
@@ -35,7 +36,7 @@ Home of the Boardwalk Chicken
     $ foreman start
     $ sass --watch popsseabar/static/sass:popsseabar/static/css --style compressed
 
-    $ open http://localhost:8000
+    $ open http://localhost:5000
 
 ## Deployment to Heroku
 

@@ -1,3 +1,16 @@
-# This file is here because many Platforms as a Service look for
-# requirements.txt in the root directory of a project.
--r requirements/production.txt
+Django==1.8.1
+Pillow==2.8.2
+boto==2.38.0
+dj-database-url==0.3.0
+django-grappelli==2.6.4
+django-redis==4.2.0
+-e git+https://github.com/django-ses/django-ses.git@2fae0ebdaa96ff6daaea4edaafca3c02cdda61d8#egg=django-ses
+django-simple-captcha==0.4.5
+django-storages-redux==1.2.3
+gunicorn==19.3.0
+msgpack-python==0.4.6
+psycopg2==2.6.1
+redis==2.10.3
+six==1.9.0
+sorl-thumbnail==12.2
+whitenoise==1.0.6

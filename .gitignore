@@ -1,6 +1,7 @@
+__pycache__
+*.pyc
 .env
 .sass-cache
-__pycache__
 build
 dump.rdb
 node_modules
