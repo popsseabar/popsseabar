@@ -1,5 +1,6 @@
 import time
 
+from django.core.validators import RegexValidator
 from django.forms import Form, CharField, ChoiceField, \
     DateField, DateInput, EmailField, EmailInput, IntegerField, \
     TextInput, TypedChoiceField
@@ -24,6 +25,16 @@ class ContactForm(Form):
 
     name = CharField(widget=TextInput(attrs={'placeholder': 'Justin Doe'}))
     business_name = CharField(required=False)
+    phone = CharField(
+        widget=TextInput(attrs={'placeholder': '202-534-3933'}),
+        validators=[
+            RegexValidator(
+                r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$',
+                'Enter a valid 10 digit phone number.',
+                'Invalid Phone Number'
+            ),
+        ]
+    )
     email = EmailField(widget=EmailInput(attrs={'placeholder': 'justin@example.com'}))
     address1 = CharField(label='Address',
         widget=TextInput(attrs={'placeholder': '1817 Columbia Road NW'}))
